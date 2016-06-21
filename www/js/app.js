@@ -81,6 +81,8 @@
                 console.log("On close")
             }, 
             function (missing) {
+                alert("The Android PDF viewer, due to licensing restrictions, require the user to go to Google Play to download a viewing app.")
+
                 console.log("On Missing", missing)
             }, 
             function (error) {
