@@ -1,0 +1,8 @@
+repositories{    
+  jcenter()
+}
+
+dependencies {
+    compile 'com.github.barteksc:android-pdf-viewer:1.1.1'
+}
+

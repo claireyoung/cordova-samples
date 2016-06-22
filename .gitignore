@@ -55,7 +55,7 @@ plugins/*
 ul_web_hooks/*
 
 # exception for custom plugins
-!plugins/com.timeinc.plugins.maps
+!plugins/com.plugins.pdf.pdfium
 
 # packages
 www/jspm_packages

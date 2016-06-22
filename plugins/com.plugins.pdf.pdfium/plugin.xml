@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.plugins.pdf.pdfium" version="0.1">
+    <name>Pdfium</name>
+    <description>Pdfium Cordova Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova</keywords>
+
+    <js-module src="www/pdfium.js" name="pdfium">
+        <clobbers target="pdfium" />
+    </js-module>    
+    
+    <platform name="android">
+        
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Pdfium" >
+                <param name="android-package" value="com.plugins.pdf.pdfium.Pdfium"/>
+            </feature>
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <!-- permissions goes here-->
+            <activity
+            android:name="com.plugins.pdf.pdfium.PdfActivity"
+            />
+        </config-file>
+        
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+        <source-file src="src/android/Pdfium.java" target-dir="src/com/plugins/pdf/pdfium" />
+        <source-file src="src/android/PdfActivity.java" target-dir="src/com/plugins/pdf/pdfium" />
+
+        <resource-file src="src/android/activity_main.xml" target="res/layout/activity_main.xml" />
+
+    </platform>
+</plugin>
