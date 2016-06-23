@@ -2,7 +2,7 @@ var exec = require('cordova/exec');
 
 
 module.exports = {
-  pdfium: function(arg1, arg2, successCallback) {
+  openPdf: function(arg1, arg2, successCallback) {
     exec(successCallback,
                  null, // No failure callback
                  "Pdfium",

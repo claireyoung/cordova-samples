@@ -120,7 +120,7 @@
             alert("Please press the download button first!")
         } else {
 
-            pdfium.pdfium(nativeURL, 
+            pdfium.openPdf(nativeURL, 
                 "Any_arg", 
                 function(result) {
                     console.log("returned")
