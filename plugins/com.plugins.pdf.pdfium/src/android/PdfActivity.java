@@ -15,6 +15,7 @@ package com.plugins.pdf.pdfium;
         import android.widget.Toast;
 
         import com.github.barteksc.pdfviewer.PDFView;
+        import com.github.barteksc.pdfviewer.ScrollBar;
 
         import java.net.MalformedURLException;
         import java.net.URL;
@@ -33,14 +34,16 @@ public class PdfActivity extends Activity {
         Resources resources = getApplication().getResources();
         setContentView(resources.getIdentifier("activity_main", "layout", package_name));
 
-        PDFView myView = (PDFView) findViewById(resources.getIdentifier("pdfView", "id", package_name));
+        PDFView pdfView = (PDFView) findViewById(resources.getIdentifier("pdfView", "id", package_name));
+        ScrollBar scrollBar = (ScrollBar) findViewById(resources.getIdentifier("scrollBar", "id", package_name));
+        pdfView.setScrollBar(scrollBar);
 
         Bundle b = getIntent().getExtras();
         String path = b.getString("path");
 
         Uri uri = Uri.parse(path);
 
-        myView.fromUri(uri)
+        pdfView.fromUri(uri)
                 .enableSwipe(true)
                 .enableDoubletap(true)
                 .swipeVertical(false)
