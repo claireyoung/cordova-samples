@@ -129,10 +129,105 @@
         }
     });
 
+    $('.purchase1-btn').on('click', function() {
+        console.log("Store stuff hi ", store);
+//        alert("hello people. Purchase button clicked");
+        var prod = store.get("subscription.month.1");
+        if (prod.owned == false) {
+            store.refresh();
+
+            if (prod.owned == false) {
+                store.order("subscription.month.1");
+            }
+        } else {
+            alert("You already own this!");
+        }        
+
+        // console.log('showMainScreen -> openSubscriptionManager');
+        // event.preventDefault();
+        // nonRenewing.openSubscriptionManager();
+
+    });
+
+    $('.purchase2-btn').on('click', function() {
+        console.log("Store stuff hi ", store);
+//        alert("hello people. Purchase button clicked");
+        var prod = store.get("subscription.month.6");
+        if (prod.owned == false) {
+            store.refresh();
+
+            if (prod.owned == false) {
+                store.order("subscription.month.6");
+            }
+        } else {
+            alert("You already own this!");
+        }        
+
+        // console.log('showMainScreen -> openSubscriptionManager');
+        // event.preventDefault();
+        // nonRenewing.openSubscriptionManager();
+
+    }); 
+
+    $('.verify-receipt-btn').on('click', function() {
+        verify_receipts.verify_receipts("SHARED-SECRET-HERE", "", function (result) {
+            console.log(result);
+            // the result is a dictionary containing key "receipt-data" value the receipt,
+            // and key "password" value the vendor shared secret. This should be sent to
+            // "https://sandbox.itunes.apple.com/verifyReceipt"
+            // as a POST with HTTPBody as the JSON serialized dictionary.
+
+            alert("Successfully generated encoded receipt")
+        })
+    });
+
 
 
     document.addEventListener('deviceready', function () {
 
-    }, false);
+        store.verbosity = store.INFO;
+
+
+        store.register({
+        id:    "subscription.month.1",
+        alias: "subscription.month.1",
+        type:  store.PAID_SUBSCRIPTION
+        });
+
+        store.register({
+        id:    "subscription.month.6",
+        alias: "subscription.month.6",
+        type:  store.PAID_SUBSCRIPTION
+        });
+
+        store.ready(function() {
+        console.log("\\o/ STORE READY \\o/");
+
+        // When purchase of the full version is approved,
+        // show some logs and finish the transaction.
+        store.when("full version").approved(function (order) {
+            console.log("You just unlocked the FULL VERSION!");
+            alert("You unlocked full version");
+            order.finish();
+        });
+
+        // When any product gets updated, refresh the HTML.
+        store.when("product").updated(function (p) {
+//            alert("Product ordered updated");
+        });
+
+    });
+
+    // nonRenewing.initialize({
+    //         products: [{
+    //             id: 'com.claireyoung.subscription1',
+    //             duration: 3600
+    //         }, {
+    //             id: 'com.claireyoung.subscription2',
+    //             duration: 300
+    //         }]
+    //     });    
+
+     }, false);
 
 }());

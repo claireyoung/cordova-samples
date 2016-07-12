@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.timeinc.plugins.subscriptions" version="0.1">
+    <name>CordovaSubscriptions</name>
+    <description>Cordova Subscriptions Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova</keywords>
+
+    <js-module src="www/subscriptions.js" name="subscriptions">
+        <clobbers target="verify_receipts" />
+    </js-module>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CordovaSubscriptions">
+                <param name="ios-package" value="CordovaSubscriptions"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/CordovaSubscriptions.h" />
+        <source-file src="src/ios/CordovaSubscriptions.m" />
+    </platform>
+</plugin>

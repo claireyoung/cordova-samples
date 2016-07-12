@@ -26,4 +26,7 @@
     </platform>
     <plugin name="cordova-plugin-file-transfer" spec="~1.5.1" />
     <plugin name="de.sitewaerts.cordova.documentviewer" spec="https://github.com/sitewaerts/cordova-plugin-document-viewer.git" />
+    <plugin name="cordova-plugin-purchase" spec="https://github.com/j3k0/cordova-plugin-purchase.git">
+        <variable name="BILLING_KEY" value="BILLING_KEYTEST" />
+    </plugin>
 </widget>
