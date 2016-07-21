@@ -81,6 +81,9 @@
             },
             search: {
                 enabled: true
+            },
+            page: {
+                number: 2  // start page number
             }
         };
 
@@ -95,8 +98,9 @@
             function() {
                 console.log("On Show")
             }, 
-            function (close) {
-                console.log("On close")
+            function (result) {
+                console.log("On close here ", result)
+                alert("Closed on page " + result.pageNumber)
             }, 
             function (missing) {
                 alert("The Android PDF viewer, due to licensing restrictions, require the user to go to Google Play to download a viewing app.")
@@ -182,6 +186,9 @@
     });
 
 
+    $('.restore-purchases-btn').on('click', function() {
+        store.refresh();
+    });
 
     document.addEventListener('deviceready', function () {
 
@@ -205,15 +212,21 @@
 
         // When purchase of the full version is approved,
         // show some logs and finish the transaction.
-        store.when("full version").approved(function (order) {
-            console.log("You just unlocked the FULL VERSION!");
-            alert("You unlocked full version");
+        store.when("subscription.month.1").approved(function (order) {
+            console.log("You just unlocked the subscription 1");
+            alert("You the subscription 1");
             order.finish();
         });
+        store.when("subscription.month.6").approved(function (order) {
+            console.log("You just unlocked the subscription 6");
+            alert("You the subscription 6");
+            order.finish();
+        });        
 
         // When any product gets updated, refresh the HTML.
         store.when("product").updated(function (p) {
-//            alert("Product ordered updated");
+            alert("Product ordered updated");
+            console.log("Product is ", p);
         });
 
     });
